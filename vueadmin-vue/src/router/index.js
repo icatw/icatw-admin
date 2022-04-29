@@ -16,9 +16,10 @@ const routes = [
         component: Home,
         children: [
             {path: '/index', name: 'Index', component: Index},
-            {path: '/users', name: 'SysUser', component: User},
-            {path: '/roles', name: 'SysRole', component: Role},
-            {path: '/menus', name: 'SysMenu', component: Menu}
+            {path: '/sys/users', name: 'SysUser', component: User},
+            {path: '/sys/roles', name: 'SysRole', component: Role},
+            {path: '/sys/menus', name: 'SysMenu', component: Menu},
+            {path: '/userCenter', name: 'UserCenter', component: ()=>import('../views/UserCenter')},
         ]
     },
     {

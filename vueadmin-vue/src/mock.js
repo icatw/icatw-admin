@@ -26,7 +26,20 @@ Mock.mock('/captcha', 'get', () => {
 
 Mock.mock('/login', 'post', () => {
     //无法在header中传入jwt
-    Result.code=400
-    Result.msg="验证码错误"
+    Result.code = 400
+    Result.msg = "验证码错误"
+    return Result
+})
+
+Mock.mock('/sys/userInfo', 'get', () => {
+    Result.data = {
+        id: "1",
+        username: "test",
+        avatar: "http://qzapp.qlogo.cn/qzapp/101983660/4697C6ECF9F91EBE2FF983A6D03F536D/100"
+    }
+    return Result
+})
+Mock.mock('/logout', 'post', () => {
+    Result.code = 200
     return Result
 })

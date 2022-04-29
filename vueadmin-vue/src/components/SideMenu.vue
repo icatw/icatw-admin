@@ -18,7 +18,7 @@
         <i class="el-icon-s-operation"></i>
         <span>系统管理</span>
       </template>
-      <router-link to="users">
+      <router-link to="/sys/users">
         <el-menu-item index="1-1">
           <template slot="title">
             <i class="el-icon-s-custom"></i>
@@ -26,7 +26,7 @@
           </template>
         </el-menu-item>
       </router-link>
-      <router-link to="roles">
+      <router-link to="/sys/roles">
         <el-menu-item index="1-2">
           <template slot="title">
             <i class="el-icon-rank"></i>
@@ -34,7 +34,7 @@
           </template>
         </el-menu-item>
       </router-link>
-      <router-link to="menus">
+      <router-link to="/sys/menus">
         <el-menu-item index="1-3">
           <template slot="title">
             <i class="el-icon-menu"></i>

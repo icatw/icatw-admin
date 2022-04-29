@@ -9,14 +9,16 @@
         <strong>VueAdmin后台管理系统</strong>
         <div class="header-avatar">
           <el-avatar size="medium"
-                     src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+                     :src="userInfo.avatar"></el-avatar>
           <el-dropdown>
             <span class="el-dropdown-link">
-            Admin<i class="el-icon-arrow-down el-icon--right"></i>
+            {{ userInfo.username }}<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>个人中心</el-dropdown-item>
-              <el-dropdown-item>退出</el-dropdown-item>
+              <el-dropdown-item>
+                <router-link to="/userCenter">个人中心</router-link>
+              </el-dropdown-item>
+              <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
           <el-link href="http://www.icatw.top" target="_blank">icatwの博客</el-link>
@@ -34,11 +36,40 @@
 <script>
 // @ is an alias to /src
 import SideMenu from "@/components/SideMenu";
+import avatar from "element-ui/packages/avatar";
 
 export default {
   name: "Home",
   components: {
     SideMenu
+  },
+  data() {
+    return {
+      userInfo: {
+        id: "",
+        username: "icatw",
+        avatar: ""
+      }
+    }
+  },
+  created() {
+    this.getUserInfo()
+  },
+  methods: {
+    getUserInfo() {
+      this.$axios.get("/sys/userInfo").then(res => {
+        console.log(res)
+        this.userInfo = res.data.data;
+      })
+    },
+    logout() {
+      this.$axios.post("/logout").then(res => {
+        localStorage.clear()
+        sessionStorage.clear()
+        this.$store.commit("resetState")
+        this.$router.push('/login')
+      })
+    }
   }
 }
 </script>
@@ -78,7 +109,6 @@ export default {
   background-color: #E9EEF3;
   color: #333;
   text-align: center;
-  line-height: 160px;
 }
 
 
@@ -89,6 +119,10 @@ export default {
 
 .el-icon-arrow-down {
   font-size: 12px;
+}
+
+a {
+  text-decoration: none;
 }
 
 </style>
