@@ -27,6 +27,7 @@
       </el-header>
 
       <el-main>
+        <Tabs></Tabs>
         <router-view></router-view>
       </el-main>
     </el-container>
@@ -37,11 +38,11 @@
 // @ is an alias to /src
 import SideMenu from "@/components/SideMenu";
 import avatar from "element-ui/packages/avatar";
-
+import Tabs from "@/components/Tabs"
 export default {
   name: "Home",
   components: {
-    SideMenu
+    SideMenu,Tabs
   },
   data() {
     return {
@@ -109,6 +110,7 @@ export default {
   background-color: #E9EEF3;
   color: #333;
   text-align: center;
+  padding: 0
 }
 
 
