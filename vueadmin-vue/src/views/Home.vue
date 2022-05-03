@@ -28,7 +28,9 @@
 
       <el-main>
         <Tabs></Tabs>
-        <router-view></router-view>
+        <div style="margin: 0 15px;">
+          <router-view></router-view>
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -39,10 +41,11 @@
 import SideMenu from "@/components/SideMenu";
 import avatar from "element-ui/packages/avatar";
 import Tabs from "@/components/Tabs"
+
 export default {
   name: "Home",
   components: {
-    SideMenu,Tabs
+    SideMenu, Tabs
   },
   data() {
     return {
@@ -107,10 +110,9 @@ export default {
 }
 
 .el-main {
-  background-color: #E9EEF3;
+  /*background-color: #E9EEF3;*/
   color: #333;
-  text-align: center;
-  padding: 0
+  padding: 0 !important;
 }
 
 
