@@ -91,11 +91,12 @@ Mock.mock('/sys/menu/nav', 'get', () => {
                 },
             ]
         }]
-    let authoritys = []
-    Result.data = {
-        nav: nav,
-        authoritys: authoritys
-    }
+    // 权限数据
+    let authoritys = ['sys:user', "sys:user:save","sys:user:delete"]
+
+    Result.data = {}
+    Result.data.nav = nav
+    Result.data.authoritys = authoritys
     return Result
 })
 //////////////// 菜单管理 ////////////////
