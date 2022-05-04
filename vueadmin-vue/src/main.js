@@ -6,7 +6,7 @@ import Element from "element-ui"
 import "element-ui/lib/theme-chalk/index.css"
 import axios from './axios'
 import gobal from "./globalFun"
-require("./mock") //引入mock数据，关闭则注释该行
+// require("./mock") //引入mock数据，关闭则注释该行
 
 Vue.prototype.$axios = axios
 

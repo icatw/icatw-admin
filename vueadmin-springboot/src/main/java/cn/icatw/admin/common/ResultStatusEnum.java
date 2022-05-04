@@ -37,7 +37,8 @@ public enum ResultStatusEnum {
     /**
      * 其他异常
      */
-    OTHER_EXCEPTION(500, "其他错误");
+    OTHER_EXCEPTION(500, "其他错误"),
+    CODE_EXCEPTION(501, "验证码错误");
 
     @Getter
     @Setter

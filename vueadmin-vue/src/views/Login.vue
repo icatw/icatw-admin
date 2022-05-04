@@ -21,7 +21,7 @@
         </el-form-item>
         <el-form-item label="验证码" prop="code" style="width: 380px">
           <el-input v-model="loginForm.code" style="width:172px;float: left"></el-input>
-          <el-image :src="captchaImg" class="captchaImg"></el-image>
+          <el-image :src="captchaImg" class="captchaImg" @click="getCaptcha"></el-image>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="submitForm('loginForm')">立即创建</el-button>
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import qs from "qs";
+
 export default {
   name: "Login",
   data() {
@@ -65,12 +67,11 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$axios.post('/login', this.loginForm).then(res => {
+          this.$axios.post('/login?' + qs.stringify(this.loginForm)).then(res => {
             const jwt = res.headers['authorization']
             this.$store.commit('SET_TOKEN', jwt)
             this.$router.push("/index")
           })
-          alert('submit!');
         } else {
           console.log('error submit!!');
           return false;
@@ -85,6 +86,7 @@ export default {
         console.log(res)
         this.loginForm.token = res.data.data.token
         this.captchaImg = res.data.data.captchaImg
+        this.loginForm.code = ''
       })
     }
   }
