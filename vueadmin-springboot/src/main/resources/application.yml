@@ -1,0 +1,17 @@
+server:
+  port: 8081
+# DataSource Config
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/vueadmin?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 12345
+
+#配置日志，我们所用的sql现在是不可见的，我们希望知道他是怎么执行的，所以我们必须要查看日志！
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:/mapper/**Mapper.xml
+
+

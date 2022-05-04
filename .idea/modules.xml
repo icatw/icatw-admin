@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/vueadmin-springboot/admin.iml" filepath="$PROJECT_DIR$/vueadmin-springboot/admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/icatw-admin.iml" filepath="$PROJECT_DIR$/.idea/icatw-admin.iml" />
     </modules>
   </component>
