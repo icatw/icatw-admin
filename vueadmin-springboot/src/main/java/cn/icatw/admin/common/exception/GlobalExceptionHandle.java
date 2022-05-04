@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
+ * 全局异常处理
+ *
  * @author icatw
  * @date 2022/4/28
  * @email 762188827@qq.com

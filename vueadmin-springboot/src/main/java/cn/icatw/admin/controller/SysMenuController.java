@@ -26,6 +26,11 @@ public class SysMenuController {
     @Resource
     private SysMenuService sysMenuService;
 
+    @GetMapping("/test")
+    public R test(){
+        List<SysMenu> list = sysMenuService.list();
+        return R.ok(list);
+    }
     /**
      * 分页查询所有数据
      */

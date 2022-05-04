@@ -5,7 +5,6 @@ import lombok.Getter;
 
 /**
  * 自定义异常
- * 自定制异常类
  *
  * @author icatw
  * @date 2022/04/28

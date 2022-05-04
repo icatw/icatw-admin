@@ -1,6 +1,8 @@
 package cn.icatw.admin.common;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 统一返回对象R
