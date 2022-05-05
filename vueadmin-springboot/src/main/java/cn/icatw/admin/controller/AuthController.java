@@ -46,6 +46,9 @@ public class AuthController {
     public R captcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String code = producer.createText();
         String key = UUID.randomUUID().toString();
+        //测试数据
+        key = "aaaaa";
+        code = "11111";
         BufferedImage image = producer.createImage(code);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ImageIO.write(image, "jpg", outputStream);

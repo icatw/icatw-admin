@@ -1,5 +1,6 @@
 package cn.icatw.admin.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import cn.icatw.admin.domain.SysUser;
 import cn.icatw.admin.mapper.SysUserMapper;
@@ -14,5 +15,10 @@ import org.springframework.stereotype.Service;
  */
 @Service("sysUserService")
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+    @Override
+    public SysUser getByUsername(String username) {
+
+        return getOne(new QueryWrapper<SysUser>().eq("username", username));
+    }
 }
 

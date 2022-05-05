@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 /**
- * jwt跑龙套
+ * jwt工具类
  *
  * @author icatw
  * @date 2022/05/05
