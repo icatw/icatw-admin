@@ -6,6 +6,8 @@ import cn.icatw.admin.common.Const;
 import cn.icatw.admin.common.R;
 import cn.icatw.admin.utils.RedisUtil;
 import com.google.code.kaptcha.Producer;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,7 @@ import java.io.IOException;
  */
 @Slf4j
 @RestController
+@Api("验证码模块")
 public class AuthController {
     @Autowired
     private Producer producer;
@@ -38,6 +41,7 @@ public class AuthController {
     /**
      * 图片验证码
      */
+    @ApiOperation("图片验证码")
     @GetMapping("/captcha")
     public R captcha(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String code = producer.createText();

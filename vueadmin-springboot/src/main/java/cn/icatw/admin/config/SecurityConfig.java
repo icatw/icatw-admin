@@ -28,12 +28,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private LoginSuccessHandler successHandler;
     @Autowired
     CaptchaFilter captchaFilter;
+
     private static final String[] URL_WHITELIST = {
             "/login",
             "/logout",
             "/captcha",
-            "/favicon.ico"
+            "/favicon.ico",
+            "/swagger-ui.html/**",
+            "/webjars/**",
+            "/v2/**",
+            "/swagger-resources/**",
+            "/doc.html",
     };
+
+    //@Override
+    //public void configure(WebSecurity web) throws Exception {
+    //    web.ignoring().antMatchers("/swagger-ui.html/**")
+    //            .antMatchers("/webjars/**")
+    //            .antMatchers("/v2/**")
+    //            .antMatchers("/swagger-resources/**");
+    //}
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
