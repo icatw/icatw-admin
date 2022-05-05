@@ -1,6 +1,8 @@
 package cn.icatw.admin.security;
 
 import cn.hutool.core.util.StrUtil;
+import cn.icatw.admin.domain.SysUser;
+import cn.icatw.admin.service.SysUserService;
 import cn.icatw.admin.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -26,6 +28,10 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 
     @Autowired
     private JwtUtil jwtUtil;
+    @Autowired
+    UserDetailServiceImpl userDetailService;
+    @Autowired
+    SysUserService sysUserService;
 
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
@@ -48,9 +54,14 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
         }
         String username = claim.getSubject();
         //获取用户的权限信息
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, null);
-        //设置security上下文验证主体
-        SecurityContextHolder.getContext().setAuthentication(token);
-        chain.doFilter(request, response);
+        SysUser user = sysUserService.getByUsername(username);
+        if (user != null) {
+            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, userDetailService.getUserAuthority(user.getId()));
+            //设置security上下文验证主体
+            SecurityContextHolder.getContext().setAuthentication(token);
+            chain.doFilter(request, response);
+        }
+        //UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, userDetailService.getUserAuthority());
+
     }
 }

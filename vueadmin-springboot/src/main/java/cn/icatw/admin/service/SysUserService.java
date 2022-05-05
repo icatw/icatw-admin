@@ -17,5 +17,34 @@ public interface SysUserService extends IService<SysUser> {
      * @return {@link SysUser}
      */
     SysUser getByUsername(String username);
+
+    /**
+     * 获取用户权限信息
+     *
+     * @param userId 用户id
+     * @return {@link String}
+     */
+    String getUserAuthorityInfo(Long userId);
+
+    /**
+     * 清除用户权限信息
+     *
+     * @param username 用户名
+     */
+    void clearUserAuthorityInfo(String username);
+
+    /**
+     * 清除用户权限信息根据角色id
+     *
+     * @param roleId 角色id
+     */
+    void clearUserAuthorityInfoByRoleId(Long roleId);
+
+    /**
+     * 清除用户权限信息根据菜单id
+     *
+     * @param menuId 菜单id
+     */
+    void clearUserAuthorityInfoByMenuId(Long menuId);
 }
 

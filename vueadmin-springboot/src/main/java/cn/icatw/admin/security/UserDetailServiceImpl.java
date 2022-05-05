@@ -4,6 +4,7 @@ import cn.icatw.admin.domain.SysUser;
 import cn.icatw.admin.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,6 +39,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
      * @return {@link List}<{@link GrantedAuthority}>
      */
     public List<GrantedAuthority> getUserAuthority(Long userId) {
-        return null;
+        //角色、菜单操作权限
+        String authority = sysUserService.getUserAuthorityInfo(userId);
+        return AuthorityUtils.commaSeparatedStringToAuthorityList(authority);
     }
 }
