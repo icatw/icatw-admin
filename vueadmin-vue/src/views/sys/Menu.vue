@@ -87,7 +87,8 @@
         @close="resetForm('editForm')">
       <el-form :model="editForm" :rules="editFormRules" ref="editForm" label-width="100px" class="demo-editForm">
         <el-form-item label="上级菜单" prop="parentId">
-          <el-select v-model="editForm.parentId" placeholder="请选择上级菜单">
+          <el-select v-model="editForm.parentId" :disabled="editForm.parentId===0?this.disabledStatus=true:this.disabledStatus=false"
+                     placeholder="请选择上级菜单">
             <template v-for="item in tableData">
               <el-option :label="item.name" :value="item.id"></el-option>
               <template v-for="child in item.children">
@@ -144,6 +145,7 @@ export default {
   name: "Menu",
   data() {
     return {
+      disabledStatus: true,
       dialogVisible: false,
       editForm: {},
       tableData: [],
@@ -175,6 +177,7 @@ export default {
   methods: {
     getMenuTree() {
       this.$axios.get("/sys/menu/list").then(res => {
+        console.log(res.data.data)
         this.tableData = res.data.data
       })
     },
@@ -208,7 +211,7 @@ export default {
       })
     },
     delHandle(id) {
-      this.$axios.post("/sys/menu/delete/" + id).then(res => {
+      this.$axios.delete("/sys/menu/" + id).then(res => {
         console.log(res)
         this.$message({
           showClose: true,

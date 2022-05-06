@@ -19,5 +19,12 @@ public interface SysMenuService extends IService<SysMenu> {
      * @return {@link List}<{@link SysMenuVo}>
      */
     List<SysMenuVo> getCurrentUserNav();
+
+    /**
+     * 树列表
+     *
+     * @return {@link List}<{@link SysMenu}>
+     */
+    List<SysMenu> treeList();
 }
 

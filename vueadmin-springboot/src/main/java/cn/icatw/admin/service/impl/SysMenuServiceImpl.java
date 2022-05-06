@@ -6,6 +6,7 @@ import cn.icatw.admin.domain.SysUser;
 import cn.icatw.admin.mapper.SysMenuMapper;
 import cn.icatw.admin.service.SysMenuService;
 import cn.icatw.admin.service.SysUserService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,6 +38,20 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuMapper, SysMenu> impl
         return convert(menuTree);
     }
 
+    @Override
+    public List<SysMenu> treeList() {
+        //获取所有菜单信息
+        List<SysMenu> sysMenus = this.list(new QueryWrapper<SysMenu>().orderByDesc("orderNum"));
+        //转成树状结构
+        return buildTreeMenu(sysMenus);
+    }
+
+    /**
+     * 转换
+     *
+     * @param menuTree 菜单树
+     * @return {@link List}<{@link SysMenuVo}>
+     */
     private List<SysMenuVo> convert(List<SysMenu> menuTree) {
         List<SysMenuVo> menuVos = new ArrayList<>();
         menuTree.forEach(m -> {
