@@ -208,6 +208,7 @@ export default {
           size: this.size
         }
       }).then(res => {
+        console.log(res.data.data.records)
         this.tableData = res.data.data.records
         this.current = res.data.data.current
         this.size = res.data.data.size
@@ -317,7 +318,7 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.$axios.post("/sys/user/repass", id).then(res => {
+        this.$axios.post("/sys/user/rePass", id).then(res => {
           this.$message({
             showClose: true,
             message: '恭喜你，操作成功',

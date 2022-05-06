@@ -1,13 +1,21 @@
 package cn.icatw.admin.domain;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import io.swagger.annotations.*;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 /**
  * (SysUser)实体类
@@ -26,9 +34,11 @@ public class SysUser implements Serializable {
     private Long id;
 
     @TableField(value = "username")
+    @NotBlank(message = "用户名不能为空")
     @ApiModelProperty("$column.comment")
     private String username;
 
+    @JsonIgnore
     @TableField(value = "password")
     @ApiModelProperty("$column.comment")
     private String password;
@@ -37,6 +47,8 @@ public class SysUser implements Serializable {
     @ApiModelProperty("$column.comment")
     private String avatar;
 
+    @NotBlank(message = "邮箱不能为空")
+    @Email(message = "邮箱格式不不正确")
     @TableField(value = "email")
     @ApiModelProperty("$column.comment")
     private String email;
@@ -47,11 +59,11 @@ public class SysUser implements Serializable {
 
     @TableField(value = "created")
     @ApiModelProperty("$column.comment")
-    private Date created;
+    private LocalDateTime created;
 
     @TableField(value = "updated")
     @ApiModelProperty("$column.comment")
-    private Date updated;
+    private LocalDateTime updated;
 
     @TableField(value = "last_login")
     @ApiModelProperty("$column.comment")
@@ -60,5 +72,8 @@ public class SysUser implements Serializable {
     @TableField(value = "statu")
     @ApiModelProperty("$column.comment")
     private Integer statu;
+
+    @TableField(exist = false)
+    private List<SysRole> roles;
 }
 

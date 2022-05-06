@@ -57,7 +57,9 @@ public class SysRoleController {
     @ApiOperation(value = "分页查询所有数据 ")
     @GetMapping("/list")
     @PreAuthorize("hasAuthority('sys:role:list')")
-    public R page(@RequestParam String name, @RequestParam int current, @RequestParam int size) {
+    public R page(@RequestParam(required = false) String name,
+                  @RequestParam(defaultValue = "1") int current,
+                  @RequestParam(defaultValue = "10") int size) {
         QueryWrapper<SysRole> wrapper = new QueryWrapper<SysRole>()
                 .like(StringUtils.isNotBlank(name), "name", name);
         //if (name != null && !"".equals(name)) {
@@ -131,7 +133,6 @@ public class SysRoleController {
             sysUserService.clearUserAuthorityInfoByRoleId(id);
         }
         return R.ok();
-
     }
 
     /**

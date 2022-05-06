@@ -5,7 +5,7 @@ import Element from "element-ui"
 axios.defaults.baseURL = "http://localhost:8081"
 
 const request = axios.create({
-    timeout: 5000,
+    timeout: 500000000,
     headers: {
         'Content-Type': "application/json; charset=utf-8"
     }
