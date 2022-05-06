@@ -4,6 +4,8 @@ import cn.hutool.core.lang.UUID;
 import cn.hutool.core.map.MapUtil;
 import cn.icatw.admin.common.Const;
 import cn.icatw.admin.common.R;
+import cn.icatw.admin.domain.SysUser;
+import cn.icatw.admin.service.SysUserService;
 import cn.icatw.admin.utils.RedisUtil;
 import com.google.code.kaptcha.Producer;
 import io.swagger.annotations.Api;
@@ -20,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.security.Principal;
 
 /**
  * 身份验证控制器
@@ -37,6 +40,8 @@ public class AuthController {
     private Producer producer;
     @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    SysUserService sysUserService;
 
     /**
      * 图片验证码
@@ -64,6 +69,19 @@ public class AuthController {
                         .put("token", key)
                         .put("captchaImg", base64Img)
                         .build()
+        );
+    }
+
+    @GetMapping("sys/userInfo")
+    public R getCurrentUserInfo(Principal principal) {
+        SysUser sysUser = sysUserService.getByUsername(principal.getName());
+
+        return R.ok(MapUtil.builder()
+                .put("id", sysUser.getId())
+                .put("username", sysUser.getUsername())
+                .put("avatar", sysUser.getAvatar())
+                .put("created", sysUser.getCreated())
+                .map()
         );
     }
 }

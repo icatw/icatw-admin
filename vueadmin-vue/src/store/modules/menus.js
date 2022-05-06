@@ -3,11 +3,14 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default ({
+export default {
     state: {
+
         menuList: [],
         permList: [],
-        hasRoute: false,
+
+        hasRoutes: false,
+
         editableTabsValue: 'Index',
         editableTabs: [{
             title: '首页',
@@ -18,23 +21,27 @@ export default ({
         setMenuList(state, menus) {
             state.menuList = menus
         },
-        setPermList(state, perm) {
-            state.permList = perm
+        setPermList(state, perms) {
+            state.permList = perms
         },
-        changeRouteStatus(state, hasRoute) {
-            state.hasRoute = hasRoute
-            sessionStorage.setItem("hasRoute", hasRoute)
+        changeRouteStatus(state, hasRoutes) {
+            state.hasRoutes = hasRoutes
         },
+
         addTab(state, tab) {
+
             let index = state.editableTabs.findIndex(e => e.name === tab.name)
+
             if (index === -1) {
                 state.editableTabs.push({
                     title: tab.title,
-                    name: tab.name
+                    name: tab.name,
                 });
             }
+
             state.editableTabsValue = tab.name;
         },
+
         resetState: (state) => {
             state.menuList = []
             state.permList = []
@@ -46,6 +53,8 @@ export default ({
                 name: 'Index',
             }]
         }
+
     },
-    actions: {}
-})
+    actions: {},
+
+}

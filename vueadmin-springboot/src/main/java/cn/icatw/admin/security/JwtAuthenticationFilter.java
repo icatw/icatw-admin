@@ -53,15 +53,14 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
             throw new JwtException("token已经过期");
         }
         String username = claim.getSubject();
-        //获取用户的权限信息
-        SysUser user = sysUserService.getByUsername(username);
-        if (user != null) {
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, userDetailService.getUserAuthority(user.getId()));
-            //设置security上下文验证主体
-            SecurityContextHolder.getContext().setAuthentication(token);
-            chain.doFilter(request, response);
-        }
-        //UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null, userDetailService.getUserAuthority());
+        // 获取用户的权限等信息
 
+        SysUser sysUser = sysUserService.getByUsername(username);
+        UsernamePasswordAuthenticationToken token
+                = new UsernamePasswordAuthenticationToken(username, null, userDetailService.getUserAuthority(sysUser.getId()));
+
+        SecurityContextHolder.getContext().setAuthentication(token);
+
+        chain.doFilter(request, response);
     }
 }

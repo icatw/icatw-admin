@@ -1,12 +1,11 @@
 package cn.icatw.admin.controller;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import cn.icatw.admin.common.R;
 import cn.icatw.admin.domain.SysUser;
 import cn.icatw.admin.service.SysUserService;
-import cn.icatw.admin.common.R;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,7 +20,7 @@ import java.util.List;
  */
 @Api(tags = "(SysUser)")
 @RestController
-@RequestMapping("sysUser")
+@RequestMapping("sys/user")
 public class SysUserController {
 
     /**

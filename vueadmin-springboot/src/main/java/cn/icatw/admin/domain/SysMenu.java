@@ -1,13 +1,18 @@
 package cn.icatw.admin.domain;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import io.swagger.annotations.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 菜单表(SysMenu)实体类
@@ -73,7 +78,7 @@ public class SysMenu implements Serializable {
      */
     @TableField(value = "orderNum")
     @ApiModelProperty("排序")
-    private Integer ordernum;
+    private Integer orderNum;
 
     @TableField(value = "created")
     @ApiModelProperty("$column.comment")
@@ -86,5 +91,8 @@ public class SysMenu implements Serializable {
     @TableField(value = "statu")
     @ApiModelProperty("$column.comment")
     private Integer statu;
+
+    @TableField(exist = false)
+    private List<SysMenu> children = new ArrayList<>();
 }
 

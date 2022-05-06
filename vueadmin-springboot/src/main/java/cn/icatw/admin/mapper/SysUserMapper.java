@@ -1,7 +1,7 @@
 package cn.icatw.admin.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import cn.icatw.admin.domain.SysUser;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -21,6 +21,12 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      */
     List<Long> getNavMenuIds(@Param("userId") Long userId);
 
+    /**
+     * 通过菜单id列表
+     *
+     * @param menuId 菜单id
+     * @return {@link List}<{@link SysUser}>
+     */
     List<SysUser> listByMenuId(@Param("menuId") Long menuId);
 }
 

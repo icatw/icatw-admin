@@ -3,6 +3,8 @@ package cn.icatw.admin.service;
 import cn.icatw.admin.domain.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * (SysUser)表服务接口
  *
@@ -46,5 +48,13 @@ public interface SysUserService extends IService<SysUser> {
      * @param menuId 菜单id
      */
     void clearUserAuthorityInfoByMenuId(Long menuId);
+
+    /**
+     * ids得到导航菜单
+     *
+     * @param userId 用户id
+     * @return {@link List}<{@link Long}>
+     */
+    List<Long> getNavMenuIds(Long userId);
 }
 
