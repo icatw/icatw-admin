@@ -13,7 +13,7 @@ class VueadminSpringbootApplicationTests {
     @Test
     void contextLoads() {
         String encode = bCryptPasswordEncoder.encode("111111");
-        boolean b = bCryptPasswordEncoder.matches("111121", encode);
+        boolean b = bCryptPasswordEncoder.matches("111111", encode);
         System.out.println("密码匹配结果为：" + b);
         System.out.println("加密后的密码为:" + encode);
     }

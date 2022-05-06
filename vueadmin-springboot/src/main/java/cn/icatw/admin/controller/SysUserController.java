@@ -2,6 +2,7 @@ package cn.icatw.admin.controller;
 
 import cn.icatw.admin.common.Const;
 import cn.icatw.admin.common.R;
+import cn.icatw.admin.common.vo.PassVo;
 import cn.icatw.admin.domain.SysRole;
 import cn.icatw.admin.domain.SysUser;
 import cn.icatw.admin.domain.SysUserRole;
@@ -12,6 +13,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,7 @@ import java.util.List;
 @Api(tags = "(SysUser)")
 @RestController
 @RequestMapping("sys/user")
+@Slf4j
 public class SysUserController {
 
     /**
@@ -147,6 +151,7 @@ public class SysUserController {
         return R.ok();
     }
 
+    @ApiOperation("重置密码：默认为888888")
     @PostMapping("/rePass")
     @PreAuthorize("hasAuthority('sys:user:repass')")
     public R rePass(@RequestBody Long userId) {
@@ -155,6 +160,32 @@ public class SysUserController {
         user.setUpdated(LocalDateTime.now());
         sysUserService.updateById(user);
         return R.ok();
+    }
+
+    @ApiOperation("修改密码")
+    @PostMapping("/updatePass")
+    public R updatePass(@Validated @RequestBody PassVo passVo, Principal principal) {
+        String username = principal.getName();
+        SysUser user = sysUserService.getByUsername(username);
+        //将旧密码加密
+        log.info("------------------------------------------------------");
+        log.info("输入的旧密码为：" + passVo.getCurrentPass());
+        log.info("------------------------------------------------------");
+        log.info("输入的新密码为：" + passVo.getPassword());
+        log.info("------------------------------------------------------");
+
+        //传入的旧密码跟数据库密码对比，错误则返回错误信息，正确则修改密码；
+        boolean b = bCryptPasswordEncoder.matches(passVo.getCurrentPass(), user.getPassword());
+        if (!b) {
+            return R.fail("旧密码错误！");
+        } else {
+            String newPass = bCryptPasswordEncoder.encode(passVo.getPassword());
+            user.setPassword(newPass);
+            user.setUpdated(LocalDateTime.now());
+            //更新信息
+            sysUserService.updateById(user);
+            return R.ok();
+        }
     }
 }
 

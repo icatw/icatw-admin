@@ -4,13 +4,13 @@
 
     <el-form :model="passForm" status-icon :rules="rules" ref="passForm" label-width="100px">
       <el-form-item label="旧密码" prop="currentPass">
-        <el-input type="password" v-model="passForm.currentPass" autocomplete="off"></el-input>
+        <el-input type="password" v-model="passForm.currentPass" autocomplete="on" show-password></el-input>
       </el-form-item>
       <el-form-item label="新密码" prop="password">
-        <el-input type="password" v-model="passForm.password" autocomplete="off"></el-input>
+        <el-input type="password" v-model="passForm.password" autocomplete="on" show-password></el-input>
       </el-form-item>
       <el-form-item label="确认密码" prop="checkPass">
-        <el-input type="password" v-model="passForm.checkPass" autocomplete="off"></el-input>
+        <el-input type="password" v-model="passForm.checkPass" autocomplete="on" show-password></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('passForm')">提交</el-button>
@@ -65,29 +65,54 @@ export default {
         this.userInfo = res.data.data;
       })
     },
+    // submitForm(formName) {
+    //   this.$refs[formName].validate((valid) => {
+    //     if (valid) {
+    //       const _this = this
+    //       this.$axios.post('/sys/user/updatePass', this.passForm).then(res => {
+    //         _this.$alert(res.data.msg, '提示', {
+    //           confirmButtonText: '确定',
+    //           callback: action => {
+    //             this.$refs[formName].resetFields();
+    //           }
+    //         });
+    //       })
+    //     } else {
+    //       console.log('error submit!!');
+    //       return false;
+    //     }
+    //   });
+    // },
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-
-          const _this = this
-          this.$axios.post('/sys/user/updatePass', this.passForm).then(res => {
-
-            _this.$alert(res.data.msg, '提示', {
-              confirmButtonText: '确定',
-              callback: action => {
-                this.$refs[formName].resetFields();
-              }
-            });
-          })
-
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      });
+      this.$confirm('将修改用户【' + this.userInfo.username + '】的密码, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$axios.post("/sys/user/updatePass", this.passForm).then(res => {
+          console.log(res)
+          this.$message({
+            showClose: true,
+            message: '恭喜你，密码修改成功，请重新登陆',
+            type: 'success',
+            onClose: () => {
+              this.passForm = ''
+              this.logout()
+            }
+          });
+        })
+      })
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
+    },
+    logout() {
+      this.$axios.post("/logout").then(res => {
+        localStorage.clear()
+        sessionStorage.clear()
+        this.$store.commit("resetState")
+        this.$router.push('/login')
+      })
     }
   }
 }
