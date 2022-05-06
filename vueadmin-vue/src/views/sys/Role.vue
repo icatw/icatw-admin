@@ -233,12 +233,11 @@ export default {
     delHandle(id) {
       console.log(id)
       var ids = []
-      console.log(id ? 31 : 32)
       id ? ids.push(id) : this.multipleSelection.forEach(row => {
         ids.push(row.id)
       })
       console.log(ids)
-      this.$axios.post("/sys/role/delete", ids).then(res => {
+      this.$axios.delete("/sys/role/", {data:ids}).then(res => {
         console.log(res)
         this.$message({
           showClose: true,
