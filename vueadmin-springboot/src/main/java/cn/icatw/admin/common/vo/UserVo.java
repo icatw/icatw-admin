@@ -34,7 +34,7 @@ public class UserVo implements Serializable {
     private String avatar;
 
     @NotBlank(message = "邮箱不能为空")
-    @Email(message = "邮箱格式不不正确")
+    @Email(message = "邮箱格式不正确")
     @ApiModelProperty("$column.comment")
     private String email;
 

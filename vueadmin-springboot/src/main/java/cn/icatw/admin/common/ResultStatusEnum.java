@@ -31,6 +31,10 @@ public enum ResultStatusEnum {
     TOKEN_VERIFICATION_FAILED(303, "token验证失败，请重新登录"),
     NOT_USER(304, "用户不存在，请重新登录"),
     /**
+     * 密码错误
+     */
+    PASSWORD_ERROR(305, "旧密码错误！"),
+    /**
      * 系统异常
      */
     SYSTEM_EXCEPTION(401, "系统错误"),

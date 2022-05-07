@@ -48,8 +48,9 @@
           label="角色名称"
           width="180">
         <template slot-scope="scope">
-          <el-tag style="margin-right: 5px;" size="small" :type="item.name=='超级管理员'?'success':'info'" v-for="item in scope.row.roles">
-            {{item.name }}
+          <el-tag style="margin-right: 5px;" size="small" :type="item.name=='超级管理员'?'success':'info'"
+                  v-for="item in scope.row.roles">
+            {{ item.name }}
           </el-tag>
         </template>
       </el-table-column>
@@ -109,7 +110,8 @@
         layout="total, sizes, prev, pager, next, jumper"
         :total="total">
     </el-pagination>
-    <el-dialog title="用户信息" :visible.sync="dialogFormVisible" width="600px">
+    <el-dialog title="用户信息" :visible.sync="dialogFormVisible" width="600px"
+               :before-close="handleClose">
       <el-form :model="editForm" :rules="editFormRules" ref="editForm">
         <el-form-item label="用户名" prop="username" label-width="100px">
           <el-input v-model="editForm.username" autocomplete="off"></el-input>
@@ -338,6 +340,10 @@ export default {
           });
         })
       })
+    },
+    handleClose(done) {
+      done();
+      this.resetForm('editForm')
     }
   },
   created() {
