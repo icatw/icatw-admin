@@ -185,17 +185,17 @@ public class SysUserController {
         SysUser user = sysUserService.getByUsername(username);
         //将旧密码加密
         log.info("------------------------------------------------------");
-        log.info("输入的旧密码为：" + passVo.getCurrentPass());
+        log.info("输入的旧密码为：" + passVo.getOldPassword());
         log.info("------------------------------------------------------");
-        log.info("输入的新密码为：" + passVo.getPassword());
+        log.info("输入的新密码为：" + passVo.getNewPassword());
         log.info("------------------------------------------------------");
 
         //传入的旧密码跟数据库密码对比，错误则返回错误信息，正确则修改密码；
-        boolean b = bCryptPasswordEncoder.matches(passVo.getCurrentPass(), user.getPassword());
+        boolean b = bCryptPasswordEncoder.matches(passVo.getOldPassword(), user.getPassword());
         if (!b) {
             return R.fail("旧密码错误！");
         } else {
-            String newPass = bCryptPasswordEncoder.encode(passVo.getPassword());
+            String newPass = bCryptPasswordEncoder.encode(passVo.getNewPassword());
             user.setPassword(newPass);
             user.setUpdated(LocalDateTime.now());
             //更新信息

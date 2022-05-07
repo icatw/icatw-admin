@@ -130,6 +130,7 @@ export default {
               type: 'success',
               onClose: () => {
                 this.getUserInfo()
+                location.reload()
               }
             });
           })
@@ -151,18 +152,28 @@ export default {
         this.$message.error("两次密码输入不一致");
         return false;
       }
-      this.axios
-          .put("/api/admin/users/password", this.passwordForm)
+      this.$axios
+          .post("/sys/user/updatePass", this.passwordForm)
           .then(({data}) => {
-            if (data.flag) {
+            console.log(data)
+            if (data.code === 200) {
               this.passwordForm.oldPassword = "";
               this.passwordForm.newPassword = "";
               this.passwordForm.confirmPassword = "";
-              this.$message.success(data.message);
+              this.$message.success("恭喜你，密码修改成功，请重新登陆！");
+              this.logout()
             } else {
-              this.$message.error(data.message);
+              this.$message.error(data.msg);
             }
           });
+    },
+    logout() {
+      this.$axios.post("/logout").then(res => {
+        localStorage.clear()
+        sessionStorage.clear()
+        this.$store.commit("resetState")
+        this.$router.push('/login')
+      })
     }
   }
 }
