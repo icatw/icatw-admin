@@ -15,7 +15,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,6 +57,10 @@ public class SysUser implements Serializable {
     @ApiModelProperty("$column.comment")
     private String city;
 
+    @TableField(value = "phone")
+    @ApiModelProperty("$column.comment")
+    private String phone;
+
     @TableField(value = "created")
     @ApiModelProperty("$column.comment")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
@@ -69,7 +72,8 @@ public class SysUser implements Serializable {
 
     @TableField(value = "last_login")
     @ApiModelProperty("$column.comment")
-    private Date lastLogin;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
+    private LocalDateTime lastLogin;
 
     @TableField(value = "statu")
     @ApiModelProperty("$column.comment")

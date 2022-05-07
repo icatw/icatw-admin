@@ -58,11 +58,11 @@
           label="操作"
           width="220">
         <template slot-scope="scope">
-          <el-button type="text" @click="permHandle(scope.row.id)" v-if="hasAuth('sys:role:perm')">分配权限</el-button>
+          <el-button type="text" @click="permHandle(scope.row.id)">分配权限</el-button>
           <el-divider direction="vertical"></el-divider>
-          <el-button type="text" @click="editHandle(scope.row.id)" v-if="hasAuth('sys:role:update')">编辑</el-button>
+          <el-button type="text" @click="editHandle(scope.row.id)">编辑</el-button>
           <el-divider direction="vertical"></el-divider>
-          <el-popconfirm title="确定要删除这条记录吗？" @confirm="delHandle(scope.row.id)" v-if="hasAuth('sys:role:delete')">
+          <el-popconfirm title="确定要删除这条记录吗？" @confirm="delHandle(scope.row.id)">
             <el-button type="text" slot="reference">删除</el-button>
           </el-popconfirm>
         </template>
@@ -237,7 +237,7 @@ export default {
         ids.push(row.id)
       })
       console.log(ids)
-      this.$axios.delete("/sys/role/", {data:ids}).then(res => {
+      this.$axios.delete("/sys/role/", {data: ids}).then(res => {
         console.log(res)
         this.$message({
           showClose: true,

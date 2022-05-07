@@ -48,19 +48,23 @@
           label="角色名称"
           width="180">
         <template slot-scope="scope">
-          <el-tag style="margin-right: 5px;" size="small" type="info" v-for="item in scope.row.roles">{{ item.name }}
+          <el-tag style="margin-right: 5px;" size="small" :type="item.name=='超级管理员'?'success':'info'" v-for="item in scope.row.roles">
+            {{item.name }}
           </el-tag>
         </template>
       </el-table-column>
       <el-table-column
           prop="email"
+          width="140px"
           label="邮箱">
       </el-table-column>
       <el-table-column
           prop="phone"
+          width="100px"
           label="手机号">
       </el-table-column>
       <el-table-column
+          width="70px"
           label="状态">
         <template slot-scope="scope">
           <el-tag v-if="scope.row.statu === 0" size="small" type="danger">禁用</el-tag>
@@ -70,21 +74,26 @@
       <el-table-column
           prop="created"
           label="创建时间"
-          width="200">
+          width="123px">
+      </el-table-column>
+      <el-table-column
+          prop="lastLogin"
+          label="上次登陆时间"
+          width="123px">
       </el-table-column>
       <el-table-column
           width="260px"
           label="操作">
         <template slot-scope="scope">
-          <el-button type="text" @click="roleHandle(scope.row.id)" v-if="hasAuth('sys:user:role')">分配角色</el-button>
+          <el-button type="text" @click="roleHandle(scope.row.id)">分配角色</el-button>
           <el-divider direction="vertical"></el-divider>
           <el-button type="text" @click="repassHandle(scope.row.id, scope.row.username)"
-                     v-if="hasAuth('sys:user:repass')">重置密码
+          >重置密码
           </el-button>
           <el-divider direction="vertical"></el-divider>
-          <el-button type="text" @click="editHandle(scope.row.id)" v-if="hasAuth('sys:user:update')">编辑</el-button>
+          <el-button type="text" @click="editHandle(scope.row.id)">编辑</el-button>
           <el-divider direction="vertical"></el-divider>
-          <el-popconfirm title="确定要删除这条记录吗？" @confirm="delHandle(scope.row.id)" v-if="hasAuth('sys:user:delete')">
+          <el-popconfirm title="确定要删除这条记录吗？" @confirm="delHandle(scope.row.id)">
             <el-button type="text" slot="reference">删除</el-button>
           </el-popconfirm>
         </template>
@@ -154,6 +163,7 @@ export default {
   name: "User",
   data() {
     return {
+      userType: 'success',
       searchForm: {
         username: ''
       },

@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * jwt身份验证过滤器
+ *
  * @author icatw
  * @date 2022/5/5
  * @email 762188827@qq.com

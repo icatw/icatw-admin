@@ -18,7 +18,7 @@ import java.io.IOException;
  * @author icatw
  * @date 2022/5/5
  * @email 762188827@qq.com
- * @apiNote
+ * @apiNote 访问权限不足时将在此处理，抛出异常
  */
 @Component
 public class JwtAccessDeniedHandler implements AccessDeniedHandler {
@@ -27,7 +27,7 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
         response.setContentType("application/json;charset=UTF-8");
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         ServletOutputStream outputStream = response.getOutputStream();
-        R r = R.fail(accessDeniedException.getMessage());
+        R r = R.fail("无权访问，请联系管理员vx：iCat0297");
         outputStream.write(JSONUtil.toJsonStr(r).getBytes("UTF-8"));
         outputStream.flush();
         outputStream.close();
