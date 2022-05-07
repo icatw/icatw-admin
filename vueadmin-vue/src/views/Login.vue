@@ -17,14 +17,14 @@
           <el-input v-model="loginForm.username"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password" style="width: 380px">
-          <el-input v-model="loginForm.password"></el-input>
+          <el-input type="password" show-password v-model="loginForm.password"></el-input>
         </el-form-item>
         <el-form-item label="验证码" prop="code" style="width: 380px">
           <el-input v-model="loginForm.code" style="width:172px;float: left"></el-input>
           <el-image :src="captchaImg" class="captchaImg" @click="getCaptcha"></el-image>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="submitForm('loginForm')">立即创建</el-button>
+          <el-button type="primary" @click="submitForm('loginForm')">立即登录</el-button>
           <el-button @click="resetForm('loginForm')">重置</el-button>
         </el-form-item>
       </el-form>
@@ -41,7 +41,7 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: '111111',
+        password: '666666',
         code: '',
         token: ''
       },
