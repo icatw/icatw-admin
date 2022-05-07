@@ -3,6 +3,7 @@ package cn.icatw.admin.domain;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -59,6 +60,7 @@ public class SysUser implements Serializable {
 
     @TableField(value = "created")
     @ApiModelProperty("$column.comment")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+8")
     private LocalDateTime created;
 
     @TableField(value = "updated")

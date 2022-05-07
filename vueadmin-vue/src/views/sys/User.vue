@@ -10,7 +10,7 @@
         </el-input>
       </el-form-item>
       <el-form-item>
-        <el-button>搜索</el-button>
+        <el-button @click="getUserList()">搜索</el-button>
         <el-button type="primary" @click="dialogFormVisible = true" v-if="hasAuth('sys:user:save')">新增</el-button>
         <el-popconfirm title="确定要删除这些记录吗？" @confirm="delHandle(null)" style="margin-left: 10px;"
                        v-if="hasAuth('sys:user:delete')">
@@ -203,7 +203,7 @@ export default {
     getUserList() {
       this.$axios.get('/sys/user/list', {
         params: {
-          name: this.searchForm.name,
+          name: this.searchForm.username,
           current: this.current,
           size: this.size
         }
