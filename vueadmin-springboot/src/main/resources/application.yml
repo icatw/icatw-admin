@@ -28,3 +28,21 @@ icatw:
     expire: 604800 #7天，秒单位
     header: Authorization
     secret: jiwaslgkag45613165465456465132ga
+
+aliyun:
+  oss:
+    end-point: oss-cn-beijing.aliyuncs.com
+    key-id: LTAI5t9s2XYyATR2g2iNy3TZ
+    key-secret: DZppauve3NQpvZr6oalsvM9DmKEpOH
+    bucket-name: blog-icatwms
+
+#knife4j:
+#  # 开启增强配置
+#  enable: true
+#  #  　开启Swagger的Basic认证功能,默认是false
+#  basic:
+#    enable: true
+#    # Basic认证用户名
+#    username: admin
+#    # Basic认证密码
+#    password: 123321

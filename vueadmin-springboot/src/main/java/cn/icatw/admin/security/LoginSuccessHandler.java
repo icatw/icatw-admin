@@ -37,13 +37,16 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         response.setContentType("application/json;charset=UTF-8");
         ServletOutputStream outputStream = response.getOutputStream();
+        String currentUsername = authentication.getName();
         //更新最后登陆时间
-        SysUser user = sysUserService.getByUsername(authentication.getName());
-        user.setLastLogin(LocalDateTime.now());
-        sysUserService.updateById(user);
+        if (currentUsername != null) {
+            SysUser user = sysUserService.getByUsername(currentUsername);
+            user.setLastLogin(LocalDateTime.now());
+            sysUserService.updateById(user);
+        }
 
         // 生成jwt，并放置到请求头中
-        String jwt = jwtUtil.generateToken(authentication.getName());
+        String jwt = jwtUtil.generateToken(currentUsername);
         log.info("token为---------------------------------------" + jwt);
         response.setHeader(jwtUtil.getHeader(), jwt);
 

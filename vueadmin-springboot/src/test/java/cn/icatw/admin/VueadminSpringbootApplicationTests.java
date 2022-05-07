@@ -18,4 +18,8 @@ class VueadminSpringbootApplicationTests {
         System.out.println("加密后的密码为:" + encode);
     }
 
+    @Test
+    void testOss() {
+
+    }
 }

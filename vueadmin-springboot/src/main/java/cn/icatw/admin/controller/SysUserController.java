@@ -3,6 +3,7 @@ package cn.icatw.admin.controller;
 import cn.icatw.admin.common.Const;
 import cn.icatw.admin.common.R;
 import cn.icatw.admin.common.vo.PassVo;
+import cn.icatw.admin.common.vo.UserVo;
 import cn.icatw.admin.domain.SysRole;
 import cn.icatw.admin.domain.SysUser;
 import cn.icatw.admin.domain.SysUserRole;
@@ -15,6 +16,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -35,7 +37,7 @@ import java.util.List;
  * @author icatw
  * @since 2022-05-05 08:46:27
  */
-@Api(tags = "(SysUser)")
+@Api(tags = "(用户模块)")
 @RestController
 @RequestMapping("sys/user")
 @Slf4j
@@ -72,6 +74,20 @@ public class SysUserController {
         return R.ok(userPage);
     }
 
+    /**
+     * 获取当前用户
+     *
+     * @param principal 主要
+     * @return {@link R}
+     */
+    @ApiOperation(value = "得到当前登陆用户信息")
+    @GetMapping("/getCurrentUser")
+    public R getCurrentUser(Principal principal) {
+        SysUser user = sysUserService.getByUsername(principal.getName());
+        UserVo userVo = new UserVo();
+        BeanUtils.copyProperties(user, userVo);
+        return R.ok(userVo);
+    }
 
     /**
      * 通过主键查询单条数据
