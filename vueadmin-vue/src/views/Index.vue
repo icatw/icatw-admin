@@ -20,6 +20,7 @@
             <div>是的，我想说的就是 我就是你要找的简洁版后台管理界面😎</div>
             <div>我以及搭建好了侧边栏、面包屑、以及顶部历史菜单。 剩下了由你来设计🤠</div>
             <div>如果我的项目可以帮到你，请点亮一个小小的star 🌟🌟</div>
+            <el-link href="https://gitee.com/icatw/icatw-admin">项目源码</el-link>
           </el-collapse-item>
         </el-collapse>
       </el-row>
@@ -44,13 +45,13 @@
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label">
-            <i class="el-icon-mobile-phone"></i>邮箱
+            <i class="el-icon-message"></i>邮箱
           </template>
           {{ userInfo.email }}
         </el-descriptions-item>
         <el-descriptions-item>
           <template slot="label">
-            <i class="el-icon-mobile-phone"></i>地区
+            <i class="el-icon-place"></i>地区
           </template>
           {{ userInfo.city }}
         </el-descriptions-item>
@@ -84,6 +85,7 @@
             <div>· Element UI</div>
             <div>· Axios</div>
             <div>· Echarts</div>
+            <div>· qs</div>
           </el-card>
         </el-col>
         <el-col :span="8">

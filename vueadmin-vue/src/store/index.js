@@ -7,16 +7,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         token: '',
-        currentPathName: ''
+        // currentPathName: ''
     },
     mutations: {
         SET_TOKEN: (state, token) => {
             state.token = token
             localStorage.setItem("token", token)
         },
-        setPath(state) {
-            state.currentPathName = localStorage.getItem("currentPathName")
-        }
+        // setPath(state) {
+        //     state.currentPathName = localStorage.getItem("currentPathName")
+        // }
     },
     actions: {},
     modules: {

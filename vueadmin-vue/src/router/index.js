@@ -3,9 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Index from '../views/Index.vue'
-import User from '../views/sys/User.vue'
-import Role from '../views/sys/Role.vue'
-import Menu from '../views/sys/Menu.vue'
 import axios from '../axios';
 import store from "@/store";
 
@@ -43,8 +40,9 @@ const router = new VueRouter({
     routes
 })
 router.beforeEach((to, from, next) => {
-        localStorage.setItem("currentPathName", to.name)  // 设置当前的路由名称，为了在Header组件中去使用
-        store.commit("setPath")  // 触发store的数据更新
+        //
+        // localStorage.setItem("currentPathName", to.name)  // 设置当前的路由名称，为了在Header组件中去使用
+        // store.commit("setPath")  // 触发store的数据更新
 
         let hasRoute = store.state.menus.hasRoute
         let token = localStorage.getItem("token")

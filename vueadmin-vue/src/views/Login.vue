@@ -4,7 +4,7 @@
       <h2>欢迎来到icatw后台管理系统</h2>
       <el-image :src="require('@/assets/icatw.jpg')" style="width: 200px;height: 200px"></el-image>
       <p>
-        <el-link type="primary" href="https://gitee.com/icatw">Gitee地址</el-link>
+        <el-link type="primary" href="https://gitee.com/icatw/icatw-admin">Gitee地址</el-link>
       </p>
       <p>联系方式：762188827@qq.com</p>
     </el-col>
