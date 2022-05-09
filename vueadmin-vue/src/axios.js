@@ -27,6 +27,9 @@ request.interceptors.response.use(
             return response
         } else {
             Element.Message.error(!res.msg ? '系统异常' : res.msg)
+            if (res.msg ==="请先登陆！"){
+                router.push("/login")
+            }
             return Promise.reject(response.data.msg)
         }
     },
@@ -38,7 +41,7 @@ request.interceptors.response.use(
             error.massage = error.response.data.msg
         }
 
-        if (error.response.status === 401) {
+        if (error.response.status === 403) {
             router.push("/login")
         }
 

@@ -5,13 +5,15 @@ springboot+vue后台管理系统
 
 #### 软件架构
 软件架构说明
-
+springboot+springSecurity+jwt+vue前后端分离项目
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. npm install
+2. 导入数据库sql，修改数据库配置
+3. npm run service
+4. 启动springboot
+5. 启动配置redis
 
 #### 使用说明
 
