@@ -89,6 +89,13 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     @Override
     public void delete(List<Long> ids) {
+        //查询管理员信息重复，可抽取出方法，或者存入本地线程池中方便使用
+        SysRole admin = this.getOne(new QueryWrapper<SysRole>().eq("name", "超级管理员"));
+        for (Long id : ids) {
+            if (id.equals(admin.getId())) {
+                throw new CustomException(400, "不可删除超级管理员信息！");
+            }
+        }
         try {
             this.removeByIds(ids);
             //同步删除中间表记录
@@ -103,10 +110,16 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
         } catch (Exception e) {
             throw new CustomException(ResultStatusEnum.SYSTEM_EXCEPTION);
         }
+
     }
 
     @Override
     public void assignPermissions(Long roleId, Long[] menuIds) {
+        //此处为了方便直接将管理员id写死，实际开发中不能这样！
+        SysRole admin = this.getOne(new QueryWrapper<SysRole>().eq("name", "超级管理员"));
+        if (roleId.equals(admin.getId())) {
+            throw new CustomException(400, "不可更改超级管理员信息！");
+        }
 
         try {
             ArrayList<SysRoleMenu> roleMenus = new ArrayList<>();
