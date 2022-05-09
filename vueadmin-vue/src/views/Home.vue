@@ -6,7 +6,7 @@
     <el-container>
 
       <el-header>
-        <strong>VueAdmin后台管理系统</strong>
+        <strong>icatwの后台管理系统</strong>
         <div class="header-avatar">
           <el-avatar size="medium"
                      :src="userInfo.avatar"></el-avatar>

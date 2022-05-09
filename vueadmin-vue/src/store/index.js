@@ -6,17 +6,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        token: ''
-
+        token: '',
+        currentPathName: ''
     },
     mutations: {
-
         SET_TOKEN: (state, token) => {
             state.token = token
             localStorage.setItem("token", token)
         },
-
-
+        setPath(state) {
+            state.currentPathName = localStorage.getItem("currentPathName")
+        }
     },
     actions: {},
     modules: {
