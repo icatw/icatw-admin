@@ -18,7 +18,7 @@
           </el-collapse-item>
           <el-collapse-item title="icatwの后台管理" name="4">
             <div>是的，我想说的就是 我就是你要找的简洁版后台管理界面😎</div>
-            <div>我以及搭建好了侧边栏、面包屑、以及顶部历史菜单。 剩下了由你来设计🤠</div>
+            <div>我已经搭建好了侧边栏以及顶部历史菜单标签。 剩下了由你来设计🤠</div>
             <div>如果我的项目可以帮到你，请点亮一个小小的star 🌟🌟</div>
             <el-link href="https://gitee.com/icatw/icatw-admin">项目源码</el-link>
           </el-collapse-item>
