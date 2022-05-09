@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class VueadminSpringbootApplication {
+public class AdminSpringbootApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VueadminSpringbootApplication.class, args);
+        SpringApplication.run(AdminSpringbootApplication.class, args);
     }
 
 }

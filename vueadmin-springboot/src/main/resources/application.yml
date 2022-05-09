@@ -25,7 +25,7 @@ mybatis-plus:
 
 icatw:
   jwt:
-    expire: 604800 #7天，秒单位
+    expire: 1800 #7天，秒单位 604800
     header: Authorization
     secret: jiwaslgkag45613165465456465132ga
 

@@ -25,7 +25,7 @@ import java.util.List;
  * @author icatw
  * @since 2022-05-05 08:46:27
  */
-@Api(tags = "(用户模块)")
+@Api(tags = "用户模块")
 @RestController
 @RequestMapping("sys/user")
 @Slf4j
