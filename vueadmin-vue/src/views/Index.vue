@@ -104,14 +104,14 @@
 
     </el-card>
 
-<!--    <el-card class="box-card" :body-style="{ padding: '10px'}">-->
-<!--      <template #header>-->
-<!--        <div class="card-header">-->
-<!--          <span>访问量统计</span>-->
-<!--        </div>-->
-<!--      </template>-->
-<!--      <div id="chart" :style="{height:(((height-30)/4)*3 - 56 - 40 - 20 - 40 - 20)+'px'}"></div>-->
-<!--    </el-card>-->
+    <el-card class="box-card" :body-style="{ padding: '10px'}">
+      <template #header>
+        <div class="card-header">
+          <span>访问量统计</span>
+        </div>
+      </template>
+      <div id="chart" class="main_container"></div>
+    </el-card>
 
   </div>
 </template>
@@ -124,14 +124,51 @@ export default {
       userInfo: {}
     }
   },
+  mounted() {
+    this.initCharts()
+  },
   created() {
     this.getUserInfo()
   },
   methods: {
+    initCharts() {
+      // 初始化echarts实例
+      var myChart = this.$echarts.init(document.getElementById("chart"))
+      // 绘制图表
+      myChart.setOption({
+        title: {
+          text: "最近一周访问量统计",
+        },
+        tooltip: {},
+        xAxis: {
+          data: ['A', 'B', 'C', 'D', 'E', 'F']
+        },
+        yAxis: {},
+        series: [
+          {
+            data: [10, 22, 28, 23, 19, 20],
+            type: 'line',
+            label: {
+              show: false,
+              position: 'bottom',
+              textStyle: {
+                fontSize: 20
+              }
+            },
+            lineStyle: {
+              normal: {
+                color: 'green',
+                width: 4,
+                // type: 'dashed'
+              }
+            }
+          }]
+      })
+    },
     getUserInfo() {
       this.$axios.get("sys/user/getCurrentUser").then(res => {
         console.log(res)
-        this.userInfo=res.data.data
+        this.userInfo = res.data.data
       })
     }
   }
@@ -139,4 +176,9 @@ export default {
 </script>
 
 <style scoped>
+.main_container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
 </style>
