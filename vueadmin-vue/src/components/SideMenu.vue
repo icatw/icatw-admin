@@ -17,13 +17,13 @@
     <el-submenu :index="menu.name" v-for="menu in menuList">
       <template slot="title">
         <i :class="menu.icon"></i>
-        <span>{{ menu.title }}</span>
+        <span >{{ menu.title }}</span>
       </template>
       <router-link :to="item.path" v-for="item in menu.children">
         <el-menu-item :index="item.name" @click="selectMenu(item)">
           <template slot="title">
             <i :class="item.icon"></i>
-            <span slot="title">{{ item.title }}</span>
+            <span slot="title" class="delLine">{{ item.title }}</span>
           </template>
         </el-menu-item>
       </router-link>
@@ -56,5 +56,10 @@ export default {
 </script>
 
 <style scoped>
-
+.router-link-exact-active:active {
+  text-decoration:none
+}
+ /deep/ .el-menu-item .delLine:active{
+  text-decoration: none
+}
 </style>

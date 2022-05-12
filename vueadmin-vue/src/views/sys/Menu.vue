@@ -86,7 +86,7 @@
         width="600px"
         @close="resetForm('editForm')">
       <el-form :model="editForm" :rules="editFormRules" ref="editForm" label-width="100px" class="demo-editForm">
-        <el-form-item label="上级菜单" prop="parentId">
+        <el-form-item label="上级菜单" prop="parentId" v-if="editForm.parentId!=0">
           <el-select v-model="editForm.parentId" :disabled="editForm.parentId===0?this.disabledStatus=true:this.disabledStatus=false"
                      placeholder="请选择上级菜单">
             <template v-for="item in tableData">
