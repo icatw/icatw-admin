@@ -1,5 +1,6 @@
 package cn.icatw.admin;
 
+import org.joda.time.LocalDate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,5 +22,11 @@ class VueadminSpringbootApplicationTests {
     @Test
     void testOss() {
 
+    }
+
+    @Test
+    void timeTest() {
+        LocalDate now = LocalDate.now();
+        System.out.println(now);
     }
 }

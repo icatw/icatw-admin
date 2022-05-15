@@ -157,7 +157,7 @@ export default {
             },
             lineStyle: {
               normal: {
-                color: 'green',
+                color: '#048CCE',
                 width: 4,
                 // type: 'dashed'
               }
@@ -178,7 +178,7 @@ export default {
 <style scoped>
 .main_container {
   width: 100%;
-  height: 200px;
+  height: 300px;
   overflow: hidden;
 }
 </style>

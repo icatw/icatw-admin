@@ -105,10 +105,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 配置自定义的过滤器
                 .and()
                 .addFilter(jwtAuthenticationFilter())
-                .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class)
-
-        ;
-
+                .addFilterBefore(captchaFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override
