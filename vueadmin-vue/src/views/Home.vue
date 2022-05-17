@@ -1,7 +1,7 @@
 <template>
   <el-container>
-    <el-aside width="160px">
-      <SideMenu></SideMenu>
+    <el-aside :width="isCollapse?'68px':'180px'">
+      <SideMenu :isCollapse="isCollapse"></SideMenu>
     </el-aside>
     <el-container>
 
@@ -27,6 +27,11 @@
       </el-header>
 
       <el-main>
+        <!--          折叠菜单-->
+        <el-button :icon="isCollapse?unfold:fold"
+                   size="small"
+                   style="color: #989fa7;margin-bottom: 5px;padding: 8px"
+                   @click="foldMenu"></el-button>
         <!--        面包屑导航-->
         <el-breadcrumb
             separator-class="el-icon-arrow-right"
@@ -60,6 +65,10 @@ export default {
   },
   data() {
     return {
+      isCollapse: true,
+      //  true折叠，false打开
+      unfold: 'el-icon-s-unfold',
+      fold: 'el-icon-s-fold',
       userInfo: {
         id: "",
         username: "icatw",
@@ -71,6 +80,9 @@ export default {
     this.getUserInfo()
   },
   methods: {
+    foldMenu() {
+      this.isCollapse = !this.isCollapse
+    },
     getUserInfo() {
       this.$axios.get("/sys/userInfo").then(res => {
         console.log(res)
@@ -141,8 +153,8 @@ a {
 }
 
 .el-breadcrumb {
-  margin-top:20px;
-  margin-bottom:20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   margin-left: 20px;
 }
 

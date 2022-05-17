@@ -4,7 +4,9 @@
       class="el-menu-vertical-demo"
       background-color="#545c64"
       text-color="#fff"
-      active-text-color="#ffd04b">
+      active-text-color="#ffd04b"
+      :collapse=isCollapse
+      :collapse-transition=false>
     <router-link to="/index">
       <el-menu-item index="Index" @click="selectMenu({name: 'Index',title: '首页'})">
         <template slot="title">
@@ -17,7 +19,7 @@
     <el-submenu :index="menu.name" v-for="menu in menuList">
       <template slot="title">
         <i :class="menu.icon"></i>
-        <span >{{ menu.title }}</span>
+        <span>{{ menu.title }}</span>
       </template>
       <router-link :to="item.path" v-for="item in menu.children">
         <el-menu-item :index="item.name" @click="selectMenu(item)">
@@ -37,6 +39,7 @@
 
 export default {
   name: "SideMenu",
+  props: ['isCollapse'],
   data() {
     return {}
   },
@@ -49,7 +52,7 @@ export default {
   },
   methods: {
     selectMenu(item) {
-      this.$store.commit("addTab",item)
+      this.$store.commit("addTab", item)
     }
   }
 }
@@ -57,9 +60,10 @@ export default {
 
 <style scoped>
 .router-link-exact-active:active {
-  text-decoration:none
+  text-decoration: none
 }
- /deep/ .el-menu-item .delLine:active{
+
+/deep/ .el-menu-item .delLine:active {
   text-decoration: none
 }
 </style>
