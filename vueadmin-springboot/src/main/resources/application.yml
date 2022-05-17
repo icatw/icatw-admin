@@ -34,7 +34,7 @@ icatw:
 
 aliyun:
   oss:
-    end-point: oss-cn-beijing.aliyuncs.com
+    end-point: https://oss-cn-beijing.aliyuncs.com
     key-id: LTAI5t9s2XYyATR2g2iNy3TZ
     key-secret: DZppauve3NQpvZr6oalsvM9DmKEpOH
     bucket-name: blog-icatwms

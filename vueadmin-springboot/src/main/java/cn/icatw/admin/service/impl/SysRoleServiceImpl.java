@@ -71,9 +71,10 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
 
     @Override
     public boolean updateRole(SysRole sysRole) {
-        if ("超级管理员".equals(sysRole.getName()) || "admin".equals(sysRole.getCode())) {
-            throw new CustomException(400, "不可更改超级管理员信息！");
-        }
+        //TODO 超级管理员修改问题
+        //if ("超级管理员".equals(sysRole.getName()) || "admin".equals(sysRole.getCode())) {
+        //    throw new CustomException(400, "不可更改超级管理员信息！");
+        //}
 
         sysRole.setUpdated(LocalDateTime.now());
         //同步删除缓存权限信息
@@ -116,10 +117,10 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public void assignPermissions(Long roleId, Long[] menuIds) {
         //此处为了方便直接将管理员id写死，实际开发中不能这样！
-        SysRole admin = this.getOne(new QueryWrapper<SysRole>().eq("name", "超级管理员"));
-        if (roleId.equals(admin.getId())) {
-            throw new CustomException(400, "不可更改超级管理员信息！");
-        }
+        //SysRole admin = this.getOne(new QueryWrapper<SysRole>().eq("name", "超级管理员"));
+        //if (roleId.equals(admin.getId())) {
+        //    throw new CustomException(400, "不可更改超级管理员信息！");
+        //}
 
         try {
             ArrayList<SysRoleMenu> roleMenus = new ArrayList<>();

@@ -41,7 +41,7 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: '666666',
+        password: '888888',
         code: '',
         token: ''
       },
@@ -69,7 +69,7 @@ export default {
         if (valid) {
           this.$axios.post("/login?" + qs.stringify(this.loginForm)).then(res => {
 
-            console.log(res.data)
+            console.log('登陆接口=============>' + res.data)
 
             const jwt = res.headers['authorization']
             console.log(jwt)

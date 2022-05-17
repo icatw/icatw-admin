@@ -74,6 +74,7 @@ public class AuthController {
 
     @GetMapping("sys/userInfo")
     public R getCurrentUserInfo(Principal principal) {
+        //TODO 登陆成功之后返回用户信息，并存入前端sessionStore中
         SysUser sysUser = sysUserService.getByUsername(principal.getName());
 
         return R.ok(MapUtil.builder()
